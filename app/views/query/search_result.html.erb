@@ -1,5 +1,8 @@
-
-<h1>Closest match for search term "<%= @keyword %>"</h1>
+<% if @keyword == ""%>
+	<h1>These are some of the hottest projects </h1>
+<% else %>
+	<h1>Closest match for search term "<%= @keyword %>"</h1>
+<% end %>
 <h1>Total Number of Results Found: <%= @parsed["projects"].length %></h1>
 
 <div class="row">
@@ -19,16 +22,22 @@
 				<h3><%= link_to @title, @url %></h3>
 				<p><%= @short_description %></p>
 				<% if user_signed_in? %>
-				<p><%= simple_form_for :project, :url => {:controller => "/projects"}, :method => "post", :remote => "true" do |f| %>
+				<p>
+					<a>
+					<%= simple_form_for :project, :url => {:controller => "/projects"}, :method => "post", :remote => "true" do |f| %>
 						<%= f.input :title, :as => :hidden, :input_html => { :value => @title}, :label => false %>
 						<%= f.input :img_url, :as => :hidden, :input_html => { :value => @img_url}, :label => false %>
 						<%= f.input :short_description, :as => :hidden, :input_html => { :value => @short_description }, :label => false %>
 						<%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }, :label => false %>
-    				<%= f.button :submit, "Save" %>
+    				<%= f.button :submit, "Save", class: "btn btn-primary" %>
 					<% end %>
-				</p>
+					
+					</a>
+					</p>
 				<% else %>
 					<p><%= button_to "Sign Up Now!", new_user_registration_path, :class => "btn btn-default", :method => :get  %></p>
+					
+
 				<% end %>
 
 			</div>
@@ -36,7 +45,4 @@
 		<% end %>
 	<% end %>
 </div>
-
-
-
 
