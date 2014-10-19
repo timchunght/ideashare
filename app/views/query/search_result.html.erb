@@ -1,4 +1,4 @@
-<p>current_user id: <%= current_user.id %> </p>
+
 <h1>Closest match for search term "<%= @keyword %>"</h1>
 <h1>Total Number of Results Found: <%= @parsed["projects"].length %></h1>
 
@@ -8,17 +8,29 @@
 	<% else %>
 		
 		<% @parsed["projects"].each do |project| %>
+			<% @title = project["name"]%>
+			<% @url = project["urls"]["web"]["project"]%>
+			<% @img_url = project["photo"]["med"] %>
+			<% @short_description = project["blurb"] %>
+
 		<div class="item col-md-3">
 			<div class="thumbnail">
-				<%= image_tag project["photo"]["med"] %>
-				<h3><%= project["name"]%></h3>
-				<p><%= project["blurb"]%></p>
+				<%= image_tag @img_url %>
+				<h3><%= link_to @title, @url %></h3>
+				<p><%= @short_description %></p>
+				<% if user_signed_in? %>
 				<p><%= simple_form_for :project, :url => {:controller => "/projects"}, :method => "post", :remote => "true" do |f| %>
-						<%= f.input :title, :as => :hidden, :input_html => { :value => project["blurb"] }, :label => false %>
+						<%= f.input :title, :as => :hidden, :input_html => { :value => @title}, :label => false %>
+						<%= f.input :img_url, :as => :hidden, :input_html => { :value => @img_url}, :label => false %>
+						<%= f.input :short_description, :as => :hidden, :input_html => { :value => @short_description }, :label => false %>
 						<%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }, :label => false %>
     				<%= f.button :submit, "Save" %>
 					<% end %>
 				</p>
+				<% else %>
+					<p><%= button_to "Sign Up Now!", new_user_registration_path, :class => "btn btn-default", :method => :get  %></p>
+				<% end %>
+
 			</div>
 		</div>
 		<% end %>
