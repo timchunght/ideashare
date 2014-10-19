@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :projects
+
   root :to => "pages#home"
   get 'query/search_result'
   post 'query/search_result'

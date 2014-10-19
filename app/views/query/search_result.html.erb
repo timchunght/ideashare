@@ -1,4 +1,4 @@
-
+<p>current_user id: <%= current_user.id %> </p>
 <h1>Closest match for search term "<%= @keyword %>"</h1>
 <h1>Total Number of Results Found: <%= @parsed["projects"].length %></h1>
 
@@ -13,9 +13,18 @@
 				<%= image_tag project["photo"]["med"] %>
 				<h3><%= project["name"]%></h3>
 				<p><%= project["blurb"]%></p>
+				<p><%= simple_form_for :project, :url => {:controller => "/projects"}, :method => "post", :remote => "true" do |f| %>
+						<%= f.input :title, :as => :hidden, :input_html => { :value => project["blurb"] }, :label => false %>
+						<%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }, :label => false %>
+    				<%= f.button :submit, "Save" %>
+					<% end %>
+				</p>
 			</div>
 		</div>
 		<% end %>
 	<% end %>
 </div>
+
+
+
 
