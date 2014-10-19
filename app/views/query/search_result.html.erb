@@ -27,6 +27,7 @@
 					<%= simple_form_for :project, :url => {:controller => "/projects"}, :method => "post", :remote => "true" do |f| %>
 						<%= f.input :title, :as => :hidden, :input_html => { :value => @title}, :label => false %>
 						<%= f.input :img_url, :as => :hidden, :input_html => { :value => @img_url}, :label => false %>
+						<%= f.input :url, :as => :hidden, :input_html => { :value => @url}, :label => false %>
 						<%= f.input :short_description, :as => :hidden, :input_html => { :value => @short_description }, :label => false %>
 						<%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }, :label => false %>
     				<%= f.button :submit, "Save", class: "btn btn-primary" %>

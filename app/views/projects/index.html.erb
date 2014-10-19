@@ -35,7 +35,7 @@
   <div class="col-md-3">
     <div class="thumbnail">
       <img src=<%= project.img_url %> alt="...">
-      <h3><%= project.title%></h3>
+      <h3><%= link_to project.title, project.url %></h3>
       <p><%= project.short_description%></p>
       <p><%= button_to 'Unsave', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %></p>
     </div>
