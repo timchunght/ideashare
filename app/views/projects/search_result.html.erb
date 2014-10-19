@@ -1,15 +1,14 @@
-<h1>Projects#search</h1>
-<p>Find me in app/views/projects/search.html.erb</p>
-<p>Closest match of "<%= @keyword %>"</p>
-<p>Total Number of Results Found: <%= @parsed["projects"].length %></p>
 
-<div class="row no-gutter">
+<h1>Closest match for search term "<%= @keyword %>"</h1>
+<h1>Total Number of Results Found: <%= @parsed["projects"].length %></h1>
+
+<div class="row">
 	<% if @parsed["projects"].blank?%>
 		<h3><%= "No Result Found"%></h3>
 	<% else %>
 		
 		<% @parsed["projects"].each do |project| %>
-		<div class="col-md-3">
+		<div class="item col-md-3">
 			<div class="thumbnail">
 				<%= image_tag project["photo"]["med"] %>
 				<h3><%= project["name"]%></h3>

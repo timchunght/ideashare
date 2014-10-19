@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
-  get 'projects/search'
-  post 'projects/search'
+  root :to => "pages#home"
+  get 'query/search_result'
+  post 'query/search_result'
+  get 'query/new'
+  post 'query/new'
 
-  get 'projects/new'
+  
+  #get 'projects/new'
 
   get 'projects/create'
 
-  get 'projects/update'
+  #get 'projects/update'
 
   devise_for :users
-  root :to => "pages#home"
+  
 
   get 'pages/about'
   #get 'projects/search'

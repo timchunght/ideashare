@@ -20,8 +20,9 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
         </li>
       </ul>
-          
-     
+      
+      <%= render 'query/new' %>
+      
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
@@ -48,4 +49,6 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+
+<br>
 

@@ -1,0 +1,5 @@
+<%= simple_form_for :query, :url => {:action => :search_result, :controller => "/query"}, html: {class: "navbar-form navbar-left"} do |f| %>
+    <%= f.input :keyword, :label => false %>
+    <%= f.button :submit, "Search" %>
+<% end %>
+
