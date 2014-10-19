@@ -1,0 +1,13 @@
+
+<%= simple_form_for :project, :url => {:action => :search, :controller => :projects} do |f| %>
+    <%= f.input :keyword %>
+    <%= f.button :submit %>
+<% end %>
+
+<% if false %>
+<%= form_for :project, :url => url_for(:controller => 'projects', :action => 'search') do |f| %>
+    <%= f.text_field :keyword %>
+	<%= f.submit "Search", class: "btn btn-default" %>
+<% end %>
+
+<% end %>
