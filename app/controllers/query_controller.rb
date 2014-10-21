@@ -11,4 +11,5 @@ class QueryController < ApplicationController
    		@parsed = JSON.parse(@data)
   	end
   end
+
 end
